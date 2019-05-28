@@ -66,7 +66,7 @@ void addNewExpense(struct LinkedList *expenses) {
         return;
     }
 
-    struct ExpenseEntry *e = (struct ExpenseEntry *) malloc(sizeof(struct ExpenseEntry));//{&exType, &date, amount};
+    struct ExpenseEntry *e = (struct ExpenseEntry *) malloc(sizeof(struct ExpenseEntry));
     e->type = exType;
     e->date = date;
     e->amount = amount;

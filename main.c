@@ -8,8 +8,9 @@ int main() {
     struct LinkedList *expenses = (struct LinkedList *) malloc(sizeof(struct LinkedList));
     expenses->root = NULL;
     expenses->head = NULL;
-    while (1) {
-        int option = getInputFromMenu();
+    int option;
+    do {
+        option = getInputFromMenu();
         switch (option) {
             case 1:
                 addNewExpense(expenses);
@@ -25,13 +26,10 @@ int main() {
                            entry->date.day, entry->date.month, entry->date.year);
                 }
             }
-                break;
-            default: {
-                printf("Exiting...");
-                cleanUp(expenses);
-                return 0;
-
-            }
         }
-    }
+    } while (option != 4);
+    printf("Exiting...");
+    cleanUp(expenses);
+    return 0;
+
 }
