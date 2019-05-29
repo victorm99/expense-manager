@@ -72,6 +72,7 @@ void addNewExpense(struct LinkedList *expenses) {
     e->amount = amount;
 
     add(expenses, e);
+    printf("Successfully added new entry.\n");
 }
 
 struct ExpenseEntry *getMaxExpenseForMonth(struct LinkedList *expenses) {
@@ -81,12 +82,13 @@ struct ExpenseEntry *getMaxExpenseForMonth(struct LinkedList *expenses) {
     }
 
     int month = getMonth();
+    int year = getYear();
 
     struct Node *current = expenses->root;
     struct ExpenseEntry *maxExpense = expenses->root->value;
 
     while (current != NULL) {
-        if (current->value->date.month != month) {
+        if (current->value->date.month != month || current->value->date.year != year) {
             current = current->next;
             continue;
         }
@@ -106,12 +108,14 @@ void listExpensesForMonth(struct LinkedList *expenses) {
     }
 
     int month = getMonth();
+    int year = getYear();
+
     struct Node *current = expenses->root;
 
     double carExp = 0, electricityExp = 0, waterExp = 0, heatingExp = 0, phoneExp = 0, foodExp = 0, shoppingExp = 0;
 
     while (current != NULL) {
-        if (current->value->date.month != month) {
+        if (current->value->date.month != month || current->value->date.year != year) {
             current = current->next;
             continue;
         }
@@ -168,11 +172,10 @@ void add(struct LinkedList *expenses, struct ExpenseEntry *newEntry) {
 
     expenses->head->next = newNode;
     expenses->head = expenses->head->next;
-    printf("Successfully added new entry.");
 }
 
 int isValidDate(int day, int month, int year) {
-    if (day < 1 || month < 1 || month > 12 || year < 0 || year > 3000) {
+    if (day < 1 || month < 1 || month > 12 || year < 1970 || year > 9999) {
         return 0;
     }
 
@@ -212,6 +215,19 @@ int getMonth() {
 
     printf("\n");
     return month;
+}
+
+int getYear() {
+    printf("\nPlease choose an year. Valid years are in the range 1970 - 9999.\n");
+    int year;
+    do {
+        printf("\nYear: ");
+        fflush(stdin);
+        scanf("%d", &year);
+    } while ((year < 1970) || (year > 9999));
+
+    printf("\n");
+    return year;
 }
 
 void cleanUp(struct LinkedList *expenses) {

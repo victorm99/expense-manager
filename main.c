@@ -21,15 +21,15 @@ int main() {
             case 3: {
                 struct ExpenseEntry *entry = getMaxExpenseForMonth(expenses);
                 if (entry != NULL) {
-                    printf("Max expenses for month %d are for the following entry:\n"
-                           "%s: %.2f %d.%d.%d\n", entry->date.month, EXPENSE_TYPE_STRING[entry->type], entry->amount,
+                    printf("Max expenses for %d %d are spent for the following entry:\n"
+                           "%s: %.2f %d.%d.%d\n", entry->date.month, entry->date.year, EXPENSE_TYPE_STRING[entry->type], entry->amount,
                            entry->date.day, entry->date.month, entry->date.year);
                 }
             }
         }
     } while (option != 4);
+
     printf("Exiting...");
     cleanUp(expenses);
     return 0;
-
 }

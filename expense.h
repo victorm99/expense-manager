@@ -49,11 +49,14 @@ void listExpensesForMonth(struct LinkedList *expenses);
 // Adds the given entry to the given list
 void add(struct LinkedList *expenses, struct ExpenseEntry *newEntry);
 
-// Checks if the given day mont and year are valid
+// Checks if the given day month and year are valid
 int isValidDate(int day, int month, int year);
 
 // gets month from user input
 int getMonth();
+
+// gets month from user input
+int getYear();
 
 // releases the taken resources
 void cleanUp(struct LinkedList *expenses);
