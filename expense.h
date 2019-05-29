@@ -9,7 +9,7 @@ enum ExpenseType {
     car, electricity, water, heating, phone, food, shopping
 };
 
-char *EXPENSE_TYPE_STRING[7] = {"car", "electricity", "water", "heating", "phone", "food", "shopping"};
+static char *EXPENSE_TYPE_STRING[7] = {"car", "electricity", "water", "heating", "phone", "food", "shopping"};
 
 struct Date {
     int day;
